@@ -1,0 +1,87 @@
+{
+  "build": {
+    "args": {
+      "VCS_REF": "${localEnv:VCS_REF}"
+    },
+    "context": ".",
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "inferrinizzard.prettier-sql-vscode",
+        "mathematic.vscode-pdf",
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.vscode-pylance",
+        "ms-python.pylint",
+        "ms-vscode.cpptools",
+        "ms-vscode.hexeditor",
+        "mathematic.vscode-pdf",
+        "ms-toolsai.jupyter",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "catppuccin.catppuccin-vsc",
+        "Catppuccin.catppuccin-vsc-icons",
+        "denoland.vscode-deno",
+        "tamasfe.even-better-toml",
+        "ms-toolsai.jupyter",
+        "ms-vscode.makefile-tools",
+        "rust-lang.rust-analyzer",
+        "bradlc.vscode-tailwindcss",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "editor.tokenColorCustomizations": {
+          "textMateRules": [
+            {
+              "scope": [
+                //following will be in italic
+                "keyword",
+                "keyword.control",
+                "italic",
+                "markup.italic",
+                "markup.quote",
+                "markup.changed",
+                "markup.italic.markdown",
+                "storage",
+                "storage.type",
+                "storage.modifier",
+                "storage.type.property.js",
+                "storage.type.property.ts",
+                "storage.type.property.tsx",
+                "tag.decorator.js entity.name.tag.js",
+                "tag.decorator.js",
+                "variable.language",
+                "variable.other.object.property"
+              ],
+              "settings": {
+                "fontStyle": "italic"
+              }
+            }
+          ]
+        },
+        "github.copilot.enable": {
+          "*": true
+        },
+        "github.copilot.advanced": {
+          "authProvider": "github-enterprise",
+          "debug.overrideChatEngine": "gpt-4"
+        },
+        "github-enterprise.uri": ""
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+  "forwardPorts": [
+    5000 /* Flask */, 5900 /* VNC server */, 6081 /* VNC client */,
+    8080 /* http-server */
+  ],
+  "postCreateCommand": "/opt/setup.sh",
+  "remoteUser": "natalie"
+}
