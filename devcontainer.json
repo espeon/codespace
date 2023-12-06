@@ -10,8 +10,6 @@
     "vscode": {
       "extensions": [
         "ms-azuretools.vscode-docker",
-        "GitHub.copilot",
-        "GitHub.copilot-chat",
         "inferrinizzard.prettier-sql-vscode",
         "mathematic.vscode-pdf",
         "ms-python.python",
@@ -32,9 +30,12 @@
         "rust-lang.rust-analyzer",
         "bradlc.vscode-tailwindcss",
         "redhat.vscode-yaml",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "coenraads.bracket-pair-colorizer-2",
+        "visualstudioexptteam.vscodeintellicode"
       ],
       "settings": {
+        "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh",
         "editor.tokenColorCustomizations": {
           "textMateRules": [
             {
@@ -63,15 +64,7 @@
               }
             }
           ]
-        },
-        "github.copilot.enable": {
-          "*": true
-        },
-        "github.copilot.advanced": {
-          "authProvider": "github-enterprise",
-          "debug.overrideChatEngine": "gpt-4"
-        },
-        "github-enterprise.uri": ""
+        }
       }
     }
   },
@@ -82,6 +75,5 @@
     5000 /* Flask */, 5900 /* VNC server */, 6081 /* VNC client */,
     8080 /* http-server */
   ],
-  "postCreateCommand": "/opt/setup.sh",
   "remoteUser": "natalie"
 }

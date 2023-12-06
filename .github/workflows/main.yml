@@ -24,34 +24,34 @@ jobs:
         run: |
           export VCS_REF=$(git rev-parse HEAD)
           npm install -g @devcontainers/cli
-          devcontainer build --workspace-folder . --config devcontainer.json --image-name cs50/codespace:${{ github.sha }} --image-name cs50/codespace:latest
+          devcontainer build --workspace-folder . --config devcontainer.json --image-name espeon/codespace:${{ github.sha }} --image-name espeon/codespace:latest
 
       - name: Push (latest) to GitHub Packages
         if: ${{ github.ref == 'refs/heads/main' }}
         run: |
-          docker tag cs50/codespace:${{ github.sha }} ghcr.io/cs50/codespace:${{ github.sha }}
-          docker tag cs50/codespace:latest ghcr.io/cs50/codespace:latest
-          docker push ghcr.io/cs50/codespace:${{ github.sha }}
-          docker push ghcr.io/cs50/codespace:latest
+          docker tag espeon/codespace:${{ github.sha }} ghcr.io/espeon/codespace:${{ github.sha }}
+          docker tag espeon/codespace:latest ghcr.io/espeon/codespace:latest
+          docker push ghcr.io/espeon/codespace:${{ github.sha }}
+          docker push ghcr.io/espeon/codespace:latest
 
       - name: Build (develop)
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: |
           export VCS_REF=$(git rev-parse HEAD)
           npm install -g @devcontainers/cli
-          devcontainer build --workspace-folder . --config devcontainer.json --image-name cs50/codespace:${{ github.sha }} --image-name cs50/codespace:develop
+          devcontainer build --workspace-folder . --config devcontainer.json --image-name espeon/codespace:${{ github.sha }} --image-name espeon/codespace:develop
 
       - name: Push (develop) to GitHub Packages
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: |
-          docker tag cs50/codespace:${{ github.sha }} ghcr.io/cs50/codespace:develop
-          docker push ghcr.io/cs50/codespace:develop
+          docker tag espeon/codespace:${{ github.sha }} ghcr.io/espeon/codespace:develop
+          docker push ghcr.io/espeon/codespace:develop
 
       - name: Push to Docker Hub (develop)
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: |
-          docker push cs50/codespace:${{ github.sha }}
-          docker push cs50/codespace:develop
+          docker push espeon/codespace:${{ github.sha }}
+          docker push espeon/codespace:develop
 
       - name: Tag main as latest
         if: ${{ github.ref == 'refs/heads/main' }}

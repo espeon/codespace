@@ -18,11 +18,11 @@ RUN set -ex && \
     conda config --add channels conda-forge && \
     conda install --quiet --freeze-installed -c main conda-pack
 
-# Install asdf separately
+# Install asdf separately 
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
 ENV PATH="/root/.asdf/bin:/root/.asdf/shims:$PATH"
 
-# Install latest asdf plugins, and set default versions
+# Install latest asdf plugins for a few languages, and set default versions
 RUN asdf plugin add golang
 RUN asdf install golang latest
 RUN asdf global golang latest
@@ -30,16 +30,19 @@ RUN asdf global golang latest
 RUN asdf plugin add nodejs
 RUN asdf install nodejs latest
 RUN asdf global nodejs latest
+# enable nodejs corepack
+RUN corepack enable
+RUN corepack prepare --all
+RUN asdf reshim nodejs
 
 RUN asdf plugin add rust
 RUN asdf install rust latest
 RUN asdf global rust latest
 
-# Install oh-my-zsh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-#
-COPY setup.sh /opt/setup.sh
+# Install oh-my-zsh, asdf and git plugins
+# we don't install deps cause we install them earlier
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
+-p "asdf" -p "git" -t "https://github.com/espeon/paramour" -x
 
 # create new user, set default, and set root perms
 RUN useradd -ms /bin/zsh natalie
